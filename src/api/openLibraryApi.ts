@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { Book, Work } from "../types/book";
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 7;
 
 export async function searchBooks(query: string): Promise<Book[]> {
   const response = await axios.get("https://openlibrary.org/search.json", {
@@ -32,7 +32,6 @@ export async function getDailyTrendingBooks(): Promise<Work[]> {
 
 export async function getWork(bookId: string): Promise<Work> {
   const response = await axios.get(`https://openlibrary.org/works/${bookId}.json`, {
-    // params: { limit: PAGE_SIZE  },
   });
   return response.data
 

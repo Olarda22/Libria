@@ -1,14 +1,12 @@
-import { Box, TextField, IconButton, InputBase, ButtonBase } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
 import { useEffect, useState } from 'react'
 
-import { styled, alpha } from "@mui/material/styles";
 import { useDailyTrendBooks } from './ hooks';
 import type { Work } from '../../types/book';
 import BookCard from '@/components/BookCard';
-interface Props {
-    // onGetTrends: () => void
-}
+import Carousel from 'react-material-ui-carousel';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+
 
 export default function DailyTrendsContent() {
     const { results, loading, getDailyTrendBooks } = useDailyTrendBooks();
@@ -23,15 +21,22 @@ export default function DailyTrendsContent() {
     }, [results])
 
 
-    
-    return (
-        <div>
-            {books.map((book) => (
-                <BookCard key={book.key} book={book} />
-            ))}
 
-        </div>
+    return (
+        <>
+            <Carousel
+                autoPlay={false}
+                animation='slide'
+                navButtonsAlwaysVisible={true}
+            // indicators={false}
+            // NextIcon={<NavigateNextIcon />}
+            // PrevIcon={<NavigateBeforeIcon />}
+            >
+                {books.map((book) => (
+                    <BookCard key={book.key} book={book} />
+                ))}
+            </Carousel>
+        </>
 
     )
 }
-// export default DailyTrends
